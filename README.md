@@ -8,7 +8,7 @@ Extract it to a folder
 
 Do npm install in a command line
 
-Change YOUR_CLIENT_ID to your own client id
+Change YOUR_CLIENT_ID to your own client id. Get one here: https://discordapp.com/developers
 
 Change the messages variable to create your own custom messages
 
