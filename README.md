@@ -3,8 +3,11 @@
 # installation
 
 Download the source code
+
 Extract it to a folder
+
 Do npm install in a command line
+
 Change YOUR_CLIENT_ID to your own client id
 
 
