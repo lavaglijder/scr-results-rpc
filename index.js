@@ -49,7 +49,11 @@ function getNextApp() {
     }
 }
 
-function updateRPC() {
+/**
+ * 
+ * @param {String} message 
+ */
+function updateRPC(message) {
     let nextApp = getNextApp();
 
     if(!nextApp) {
@@ -67,7 +71,7 @@ function updateRPC() {
     let time = nextApp["time"];
     client.setActivity({
         details: `${dateString(time)}`,
-        state: `Hype on! Next app: ${nextApp["result"]["app"]}`,
+        state: message.replace("{app}", nextApp["result"]["app"]),
         endTimestamp: 1593187200000,
         largeImageKey: "scr",
         instance: false
@@ -77,11 +81,32 @@ function updateRPC() {
     })
 }
 
+/**
+ * {app} next app
+ */
+let messages = [
+    "Hype on! Next app: {app}",
+    "GL to anyone that applied!",
+    "I am excited!",
+    "Who else is excited?",
+    "I applied for SG/LD/SDS/SGD",
+    "What did you apply for?"
+]
+
+let lastMessage = -1;
+
+function randomMessage() {
+    let slot = Math.floor(Math.random() * messages.length);
+    if(slot == lastMessage) return randomMessage();
+    lastMessage = slot;
+    return messages[slot];
+}
+
 client.on('ready', () => {
-   updateRPC();
-   setTimeout(() => {
-       updateRPC();
-   }, 1000*60);
+   updateRPC(randomMessage());
+   setInterval(() => {
+       updateRPC(randomMessage());
+   }, 1000*20);
 });
 
   // Log in to RPC with client id
